@@ -32,6 +32,7 @@ import bean.myList;
 import zhuaizhuai.icard.Log;
 import zhuaizhuai.icard.MainActivity;
 import zhuaizhuai.icard.R;
+import zhuaizhuai.icard.Splash;
 
 
 /**
@@ -201,12 +202,12 @@ public class Fragment1 extends Fragment
             @Override
             public void run()
             {
-                UserInfo userInfo = new UserInfo(getContext(),Log.logthis.mytencent.getQQToken());
-                userInfo.getUserInfo(Log.logthis.listener);
-                while (!(Log.logthis.listener.done))
+                UserInfo userInfo = new UserInfo(getContext(), Splash.splashthis.mytencent.getQQToken());
+                userInfo.getUserInfo(Splash.splashthis.listener);
+                while (!(Splash.splashthis.listener.done))
                 {
                 }
-                Bundle bundle = Log.logthis.listener.getBundle();
+                Bundle bundle = Splash.splashthis.listener.getBundle();
                 msg = Message.obtain();
                 msg.what = 2;
                 msg.setData(bundle);

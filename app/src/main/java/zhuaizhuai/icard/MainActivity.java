@@ -1,17 +1,15 @@
 package zhuaizhuai.icard;
 
-import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -27,7 +25,6 @@ import bean.Leftlist;
 import bean.Tab;
 import fragment.Fragment1;
 import fragment.Fragment2;
-import fragment.Fragment2_1;
 import fragment.Fragment3;
 import fragment.Fragment4;
 
@@ -41,9 +38,11 @@ public class MainActivity extends AppCompatActivity
 
     //项目其他class public实例化
     public jTDS jtds = new jTDS();
+    public DrawerLayout drawerLayout;
     public zhuaizhuai.icard.FragmentTabHost mTabhost;
     public Tooltitle tooltitle;
-    public TextView title1;
+    public TextView toolbartitle;
+    public ImageButton toolbarright;
     public Fragment1 fragment1;
     public ListView listview;
     public ImageView leftImageview;
@@ -54,14 +53,23 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         tooltitle = (Tooltitle) findViewById(R.id.toolbar);
         setSupportActionBar(tooltitle);
-        title1 = (TextView) findViewById(R.id.tv_nav_title);
-        title1.setOnClickListener(new View.OnClickListener() {
+        toolbartitle = (TextView) findViewById(R.id.tv_nav_title);
+        toolbartitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                title1.setText("拽拽");
+                toolbartitle.setText("拽拽");
+            }
+        });
+        toolbarright = (ImageButton) findViewById(R.id.iv_nav_right);
+        toolbarright.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                drawerLayout.openDrawer(GravityCompat.START);
             }
         });
 
