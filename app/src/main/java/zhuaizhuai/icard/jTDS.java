@@ -4,6 +4,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,8 @@ import java.util.Objects;
  */
 public class jTDS
 {
+    Map<String,Integer> index = new HashMap<String, Integer>();
+
     public String Ipaddress = "zhuaizhuai.pub";
     public Connection con = null;
     public float oldbalance = 0;
@@ -24,6 +27,18 @@ public class jTDS
         return oldbalance;
     }
 
+    public jTDS()
+    {
+        /**
+         *以下是数据库表索引列
+         */
+        index.put("J_time",2);
+        index.put("J_io",3);
+        index.put("J_detail",4);
+        index.put("J_oldbalance",5);
+    }
+
+    SimpleDateFormat formattime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public void lianjie()
     {
         String UserName = "Icard";//用户名
@@ -49,22 +64,21 @@ public class jTDS
     }
 
     //获取交易记录
-    public java.util.List getdata()
+    public List getdata(String sql)
     {
         lianjie();
         ArrayList<Map>  list = new ArrayList<Map>();
-        Map<Object,Object> map = new HashMap<>();
+        Map<Object,Object> map;
         try
         {
-            //查询最后一条信息
-            String sql="select top 1 * from jiaoyijilu order by id desc";
 //            String sql="SELECT * FROM jiaoyijilu where userID="+userID;
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next())
             {
-                map.put("time",rs.getTimestamp(2));
-                if (rs.getBoolean(3))
+                map = new HashMap<>();
+                map.put("time",formattime.format(rs.getTimestamp(index.get("J_time"))));
+                if (rs.getBoolean(index.get("J_io")))
                 {
                     map.put("io","收入:");
                 }
@@ -72,10 +86,10 @@ public class jTDS
                 {
                     map.put("io","支出:");
                 }
-                map.put("detail",rs.getFloat(4));
-                map.put("oldbalance",rs.getFloat(5));
+                map.put("detail",rs.getFloat(index.get("J_detail")));
+                map.put("oldbalance",rs.getFloat(index.get("J_oldbalance")));
+                list.add(map);
             }
-            list.add(map);
             rs.close();
             stmt.close();
             closecon();

@@ -60,9 +60,9 @@ public class Fragment2 extends Fragment
         tabStrip.setTextSpacing(200);
 
         mFragments.add(new Fragment2_1());
-        mFragments.add(new Fragment3());
-        titleContainer.add("网易新闻");
-        titleContainer.add("网易体育");
+        mFragments.add(new Fragment2_2());
+        titleContainer.add("支出信息");
+        titleContainer.add("收入信息");
 
         pager.setAdapter(new myPagerAdapter(getActivity().getSupportFragmentManager(), mFragments, titleContainer));
     }

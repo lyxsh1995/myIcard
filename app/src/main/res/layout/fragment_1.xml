@@ -3,8 +3,8 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:weightSum="1"
-              android:orientation="vertical"
-              android:background="@mipmap/beijing">
+              android:background="@mipmap/beijing"
+              android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -84,16 +84,16 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.10"
+        android:layout_weight="0.20"
         android:weightSum="1"
         android:gravity="center_horizontal"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
-        android:background="#22ffffff">
+        android:background="#22ffffff"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
@@ -107,12 +107,25 @@
             android:textColor="#dd3ee0de"
             android:textSize="20dp"
             android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="最近一条支出和收入信息"
+            android:id="@+id/textView"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.35"
+            android:textColor="#fffb19"
+            android:textSize="20dp"
+            android:textIsSelectable="false"
+            android:textStyle="bold"
+            android:gravity="center_vertical"/>
     </LinearLayout>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.65"
+        android:layout_weight="0.55"
         android:id="@+id/mainlist"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"

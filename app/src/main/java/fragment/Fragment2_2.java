@@ -13,14 +13,13 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import bean.myList;
 import zhuaizhuai.icard.MainActivity;
 import zhuaizhuai.icard.R;
 
 /**
  * Created by lyxsh on 2016/8/18.
  */
-public class Fragment2_1 extends android.support.v4.app.Fragment
+public class Fragment2_2 extends android.support.v4.app.Fragment
 {
     MainActivity mactivity;
 
@@ -94,7 +93,7 @@ public class Fragment2_1 extends android.support.v4.app.Fragment
             {
 
                 //查询最后一条信息
-                String sql="select * from jiaoyijilu where io = 0 order by id desc";
+                String sql="select * from jiaoyijilu where io = 1 order by id desc";
                 List list = mactivity.jtds.getdata(sql);
 
                 msg = Message.obtain();

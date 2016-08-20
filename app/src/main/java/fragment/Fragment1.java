@@ -77,16 +77,21 @@ public class Fragment1 extends Fragment
                     textview1.setText(msg.getData().getString("nickname"));
                     break;
                 case 3:
-                    if (mainlist_3.getText().equals("收入:"))
+                    for(int i = 0;i<mainlist.getCount();i++)
                     {
-                        mainlist_4.setTextColor(Color.GREEN);
-                        mainlist_4.setText("+" + mainlist_4.getText().toString());
-                    } else
-                    {
-                        mainlist_4.setText("-" + mainlist_4.getText().toString());
+                        View viewlist = mainlist.getChildAt(i);
+                        mainlist_4 = (TextView) viewlist.findViewById(R.id.mainlist_4);
+                        mainlist_3 = (TextView) viewlist.findViewById(R.id.mainlist_3);
+                        if (mainlist_3.getText().equals("收入:"))
+                        {
+                            mainlist_4.setTextColor(Color.GREEN);
+                            mainlist_4.setText("+ " + mainlist_4.getText().toString());
+                        } else
+                        {
+                            mainlist_4.setText("- " + mainlist_4.getText().toString());
+                        }
                     }
                     break;
-
             }
         }
     };
@@ -215,7 +220,13 @@ public class Fragment1 extends Fragment
         {
             public void run()
             {
-                List list = mactivity.jtds.getdata();
+
+                //查询最后一条信息
+                String sql="select top 1 * from jiaoyijilu where io = 0 order by id desc";
+                List list = mactivity.jtds.getdata(sql);
+                sql="select top 1 * from jiaoyijilu where io = 1 order by id desc";
+                List list2 = mactivity.jtds.getdata(sql);
+                list.addAll(list2);
 
                 msg = Message.obtain();
                 msg.what = 0;
@@ -233,12 +244,10 @@ public class Fragment1 extends Fragment
                 {
                     if ((mainlist.getChildAt(0)) != null)
                     {
-                        View viewlist = mainlist.getChildAt(0);
-                        mainlist_4 = (TextView) viewlist.findViewById(R.id.mainlist_4);
-                        mainlist_3 = (TextView) viewlist.findViewById(R.id.mainlist_3);
                         msg = Message.obtain();
                         msg.what = 3;
                         handler.sendMessage(msg);
+
                         listboolean = false;
                     }
                 }
