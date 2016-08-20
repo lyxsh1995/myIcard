@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     public jTDS jtds = new jTDS();
     public zhuaizhuai.icard.FragmentTabHost mTabhost;
     public Tooltitle tooltitle;
+    public TextView title1;
     public Fragment1 fragment1;
     public ListView listview;
     public ImageView leftImageview;
@@ -55,6 +56,14 @@ public class MainActivity extends AppCompatActivity
 
         tooltitle = (Tooltitle) findViewById(R.id.toolbar);
         setSupportActionBar(tooltitle);
+        title1 = (TextView) findViewById(R.id.tv_nav_title);
+        title1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                title1.setText("拽拽");
+            }
+        });
 
         listview = (ListView) findViewById(R.id.left_drawer);
         fragment1 = new Fragment1();
@@ -96,9 +105,9 @@ public class MainActivity extends AppCompatActivity
     private void initTab()
     {
         Tab tab_home = new Tab("首页", R.drawable.tab_home_btn, Fragment1.class);
-        Tab tab_message = new Tab("消息", R.drawable.tab_message_btn, Fragment2.class);
-        Tab tab_yipai = new Tab("一拍", R.drawable.tab_yipai_btn, Fragment3.class);
-        Tab tab_user = new Tab("我", R.drawable.tab_user_btn, Fragment4.class);
+        Tab tab_message = new Tab("记录", R.drawable.tab_message_btn, Fragment2.class);
+        Tab tab_yipai = new Tab("消息", R.drawable.tab_yipai_btn, Fragment3.class);
+        Tab tab_user = new Tab("设置", R.drawable.tab_user_btn, Fragment4.class);
 
         mTabs.add(tab_home);
         mTabs.add(tab_message);
