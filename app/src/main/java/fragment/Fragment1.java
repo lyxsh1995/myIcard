@@ -86,7 +86,7 @@ public class Fragment1 extends Fragment
                         mainlist_4.setText("-" + mainlist_4.getText().toString());
                     }
                     break;
-                
+
             }
         }
     };
