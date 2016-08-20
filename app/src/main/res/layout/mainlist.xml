@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="200dp"
+              android:orientation="vertical"
+              android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.33"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/mainlist_1"
+            android:layout_width="124dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="交易时间:"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/mainlist_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="2016-07-16 13:56:23"
+            android:textSize="20dp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.33"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/mainlist_3"
+            android:layout_width="124dp"
+            android:layout_height="wrap_content"
+            android:text="支出:"
+            android:textSize="35dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/mainlist_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-199.50"
+            android:textSize="35dp"
+            android:gravity="center"
+            android:textColor="#ff0000"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.33"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/mainlist_5"
+            android:layout_width="124dp"
+            android:layout_height="wrap_content"
+            android:text="余额:"
+            android:textSize="25dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/mainlist_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="244.23"
+            android:textSize="25dp"
+            android:gravity="center"/>
+    </LinearLayout>
+</LinearLayout>
