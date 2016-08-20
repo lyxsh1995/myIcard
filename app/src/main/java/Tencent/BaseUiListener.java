@@ -19,7 +19,7 @@ public class BaseUiListener implements IUiListener
 {
     public boolean done = false;
     private String openid,access_token,expires_in;
-    JSONObject res;
+    public JSONObject res;
     Bundle bundle;
 
     public Bundle getBundle()

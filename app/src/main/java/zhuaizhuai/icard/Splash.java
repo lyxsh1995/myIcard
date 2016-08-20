@@ -137,6 +137,7 @@ public class Splash extends Activity
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         mytencent.onActivityResultData(requestCode, resultCode, data,listener);
+        listener.done = false;
         super.onActivityResult(requestCode, resultCode, data);
     }
 }

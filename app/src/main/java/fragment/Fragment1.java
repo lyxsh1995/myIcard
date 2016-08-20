@@ -207,6 +207,7 @@ public class Fragment1 extends Fragment
                 while (!(Splash.splashthis.listener.done))
                 {
                 }
+                Splash.splashthis.listener.done = false;
                 Bundle bundle = Splash.splashthis.listener.getBundle();
                 msg = Message.obtain();
                 msg.what = 2;

@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 
+import org.json.JSONException;
+
 import Tencent.BaseUiListener;
 
 /**
@@ -50,6 +52,17 @@ public class Log extends Activity
     {
         Splash.splashthis.mytencent.onActivityResultData(requestCode, resultCode, data,Splash.splashthis.listener);
         Splash.splashthis.db.execSQL(Splash.splashthis.listener.getopenid());
+        try
+        {
+            Splash.splashthis.mytencent.setOpenId(Splash.splashthis.listener.res.getString("openid"));
+            Splash.splashthis.mytencent.setAccessToken(Splash.splashthis.listener.res.getString("access_token"),
+                                                  Splash.splashthis.listener.res.getString("expires_in"));
+            Splash.splashthis.listener.done = false;
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
         Intent intent = new Intent(Log.this,MainActivity.class);
         startActivity(intent);
         finish();
