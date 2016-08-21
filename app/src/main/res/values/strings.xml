@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Icard</string>
+
+    <string-array name="spi">
+        <item>丢失</item>
+        <item>拾取</item>
+        <item>其他</item>
+    </string-array>
+
+    <string name="spibiaoti">信息发布</string>
 </resources>

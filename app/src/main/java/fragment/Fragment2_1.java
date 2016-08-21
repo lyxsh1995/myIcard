@@ -28,6 +28,7 @@ public class Fragment2_1 extends android.support.v4.app.Fragment
     ListView mainlist2;
     SimpleAdapter adapter;
     TextView mainlist_1,mainlist_2,mainlist_3,mainlist_4,mainlist_5,mainlist_6;
+    TextView datestart;
 
     Message msg = new Message();
     private android.os.Handler handler = new android.os.Handler()
@@ -80,6 +81,16 @@ public class Fragment2_1 extends android.support.v4.app.Fragment
         }
 
         mainlist2 = (ListView) view.findViewById(R.id.mainlist2);
+
+        datestart = (TextView) view.findViewById(R.id.datestart);
+        datestart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                dateFragment datefragment = new dateFragment();
+                datefragment.show(getFragmentManager(),"zhichu_datestart");
+            }
+        });
 
         setview();
         return view;

@@ -2,16 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:weightSum="1">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/datestart"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="搜索"
+        android:id="@+id/button_sousuo"
+        android:layout_gravity="center_horizontal"/>
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.9"
+        android:layout_height="395dp"
         android:id="@+id/mainlist2"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:choiceMode="singleChoice"
         android:layout_gravity="center_horizontal"/>
+
 </LinearLayout>
