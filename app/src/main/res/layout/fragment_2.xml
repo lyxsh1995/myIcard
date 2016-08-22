@@ -14,7 +14,8 @@
             android:id="@+id/tabstrip"
             android:layout_width="wrap_content"
             android:layout_height="50dip"
-            android:gravity="center" />
+            android:gravity="center"
+            android:background="#22ffffff"/>
     </android.support.v4.view.ViewPager>
 
 </LinearLayout>

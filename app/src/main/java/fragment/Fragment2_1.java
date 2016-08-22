@@ -4,13 +4,18 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Message;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import bean.myList;
@@ -24,11 +29,14 @@ public class Fragment2_1 extends android.support.v4.app.Fragment
 {
     MainActivity mactivity;
 
+    public static Fragment2_1 fragment2_1this;
     public View view;
     ListView mainlist2;
     SimpleAdapter adapter;
     TextView mainlist_1,mainlist_2,mainlist_3,mainlist_4,mainlist_5,mainlist_6;
-    TextView datestart;
+    TextView datestart,dateend;
+    dateFragment datefragment;
+    Button sousuo;
 
     Message msg = new Message();
     private android.os.Handler handler = new android.os.Handler()
@@ -45,6 +53,11 @@ public class Fragment2_1 extends android.support.v4.app.Fragment
                                                 new String[]{"time","io","detail","oldbalance"},
                                                 new int[]{R.id.mainlist_2,R.id.mainlist_3,R.id.mainlist_4,R.id.mainlist_6});
                     mainlist2.setAdapter(adapter);
+
+                    msg = Message.obtain();
+                    msg.what = 3;
+                    msg.obj = list;
+                    handler.sendMessage(msg);
 
                     break;
                 case 3:
@@ -63,6 +76,9 @@ public class Fragment2_1 extends android.support.v4.app.Fragment
                         }
                     }
                     break;
+                case 4:
+                    datestart.setText("456");
+                    break;
             }
         }
     };
@@ -70,6 +86,7 @@ public class Fragment2_1 extends android.support.v4.app.Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+        fragment2_1this = this;
         mactivity = (MainActivity) getActivity();
 
         if(view == null){
@@ -83,12 +100,48 @@ public class Fragment2_1 extends android.support.v4.app.Fragment
         mainlist2 = (ListView) view.findViewById(R.id.mainlist2);
 
         datestart = (TextView) view.findViewById(R.id.datestart);
+        dateend = (TextView) view.findViewById(R.id.dateend);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        datestart.setText(formatter.format(System.currentTimeMillis()));
+        dateend.setText(formatter.format(System.currentTimeMillis()));
         datestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                dateFragment datefragment = new dateFragment();
+                datefragment = new dateFragment(datestart);
                 datefragment.show(getFragmentManager(),"zhichu_datestart");
+            }
+        });
+        dateend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                datefragment = new dateFragment(dateend);
+                datefragment.show(getFragmentManager(),"zhichu_datestart");
+            }
+        });
+
+        sousuo = (Button) view.findViewById(R.id.sousuo);
+        sousuo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                new Thread()
+                {
+                    public void run()
+                    {
+
+                        //查询最后一条信息
+//                        String sql="select * from jiaoyijilu where io = 0 order by id desc";
+                        String sql="select * from jiaoyijilu where io = 0 and time >= '"+datestart.getText().toString()+"' and time <= '"+dateend.getText().toString()+"' order by id desc";
+                        List list = mactivity.jtds.getdata(sql);
+
+                        msg = Message.obtain();
+                        msg.what = 0;
+                        msg.obj = list;
+                        handler.sendMessage(msg);
+                    }
+                }.start();
             }
         });
 
@@ -96,7 +149,6 @@ public class Fragment2_1 extends android.support.v4.app.Fragment
         return view;
     }
 
-    boolean listboolean = true;
     private void setview()
     {
         new Thread()
@@ -112,25 +164,6 @@ public class Fragment2_1 extends android.support.v4.app.Fragment
                 msg.what = 0;
                 msg.obj = list;
                 handler.sendMessage(msg);
-            }
-        }.start();
-
-        listboolean = true;
-        new Thread()
-        {
-            public void run()
-            {
-                while (listboolean)
-                {
-                    if ((mainlist2.getChildAt(0)) != null)
-                    {
-                        msg = Message.obtain();
-                        msg.what = 3;
-                        handler.sendMessage(msg);
-
-                        listboolean = false;
-                    }
-                }
             }
         }.start();
     }

@@ -5,22 +5,47 @@
               android:layout_height="match_parent"
               android:weightSum="1">
 
-    <EditText
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/datestart"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_height="0dp"
+        android:layout_weight="0.10"
+        android:weightSum="1"
+        android:background="#22ffffff"
+        android:layout_marginTop="3dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:id="@+id/datestart"
+            android:layout_gravity="center_horizontal"
+            android:text="2016-22-12"
+            android:gravity="center"
+            android:textSize="30dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:id="@+id/dateend"
+            android:text="2016-22-12"
+            android:gravity="center"
+            android:textSize="30dp"/>
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
         android:text="搜索"
-        android:id="@+id/button_sousuo"
+        android:id="@+id/sousuo"
         android:layout_gravity="center_horizontal"/>
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="395dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.80"
         android:id="@+id/mainlist2"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"

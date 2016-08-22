@@ -53,8 +53,6 @@ public class Fragment2 extends Fragment
 
         //取消tab下面的长横线
         tabStrip.setDrawFullUnderline(false);
-        //设置tab的背景色
-        tabStrip.setBackgroundColor(255);
         //设置当前tab页签的下划线颜色
         tabStrip.setTabIndicatorColor(255255255);
         tabStrip.setTextSpacing(200);
