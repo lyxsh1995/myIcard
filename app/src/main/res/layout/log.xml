@@ -13,28 +13,28 @@
         android:layout_weight="0.05"></View>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_height="0dp"
-        android:layout_width="wrap_content"
-        android:layout_weight="0.3">
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.3"
-            ></View>
+        android:layout_width="match_parent"
+        android:layout_weight="0.3"
+        android:weightSum="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
         <ImageView
-            android:src="@mipmap/logo_new"
-            android:layout_width="0dp"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:id="@+id/imageView"
+            android:src="@mipmap/icard_icon"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.15"
-            android:gravity="center"
-            android:scaleType="centerInside"
-            android:id="@+id/log_logo"/>
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.3"
-            ></View>
+            android:text="Icard"
+            android:id="@+id/textView9"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/Q_Green"
+            android:textSize="30dp"/>
     </LinearLayout>
 
     <View
@@ -72,6 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.15"></View>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -183,7 +184,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.05"
         android:background="@null"
-        android:text="现在注册拉钩"
+        android:text="现在注册"
         android:textColor="@color/Q_huise"
         android:layout_gravity="center"/>
 
@@ -225,7 +226,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.05"
         android:background="@null"
-        android:text="随便逛逛"
+        android:text="QQ登录"
         android:textColor="@color/Q_huise"
         android:layout_gravity="center"/>
 

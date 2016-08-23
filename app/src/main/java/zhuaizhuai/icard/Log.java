@@ -25,6 +25,7 @@ public class Log extends Activity
     public static Log logthis;
 
     private Button button_log;
+    private Button log_regist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,7 +35,6 @@ public class Log extends Activity
 
         logthis = this;
         button_log = (Button) findViewById(R.id.log_log);
-
         button_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -45,15 +45,25 @@ public class Log extends Activity
                 }
             }
         });
+
+        log_regist = (Button) findViewById(R.id.log_regist);
+        log_regist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(Log.this,Register.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-        Splash.splashthis.mytencent.onActivityResultData(requestCode, resultCode, data,Splash.splashthis.listener);
-        Splash.splashthis.db.execSQL(Splash.splashthis.listener.getopenid());
         try
         {
+            Splash.splashthis.mytencent.onActivityResultData(requestCode, resultCode, data,Splash.splashthis.listener);
+            Splash.splashthis.db.execSQL(Splash.splashthis.listener.getopenid());
             Splash.splashthis.mytencent.setOpenId(Splash.splashthis.listener.res.getString("openid"));
             Splash.splashthis.mytencent.setAccessToken(Splash.splashthis.listener.res.getString("access_token"),
                                                   Splash.splashthis.listener.res.getString("expires_in"));

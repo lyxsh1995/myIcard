@@ -76,9 +76,6 @@ public class Fragment2_2 extends android.support.v4.app.Fragment
                         }
                     }
                     break;
-                case 4:
-                    datestart.setText("456");
-                    break;
             }
         }
     };

@@ -77,7 +77,7 @@ public class BaseUiListener implements IUiListener
             access_token = res.getString("access_token");
             expires_in = res.getString("expires_in");
         }
-        catch (JSONException e)
+        catch (Exception e)
         {
             e.printStackTrace();
         }
