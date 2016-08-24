@@ -211,6 +211,7 @@ public class jTDS
 
     public boolean yijingzhuce(String openid)
     {
+        String yonghuming,mima;
         try
         {
             if (con.isClosed() == true)
@@ -230,9 +231,12 @@ public class jTDS
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next())
             {
+                yonghuming = rs.getString("yonghuming");
+                mima = rs.getString("mima");
                 rs.close();
                 stmt.close();
                 closecon();
+                Splash.splashthis.db.execSQL("update qq set yonghuming = '"+yonghuming+"' , mima = '"+mima+"' where _id = 1;");
                 return true;
             }
             rs.close();
