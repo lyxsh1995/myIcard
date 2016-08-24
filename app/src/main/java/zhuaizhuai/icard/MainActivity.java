@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity
     private Leftlist leftlist = new Leftlist();
 
     //项目其他class public实例化
-    public jTDS jtds = new jTDS();
     public DrawerLayout drawerLayout;
     public zhuaizhuai.icard.FragmentTabHost mTabhost;
     public Tooltitle tooltitle;
@@ -88,24 +87,6 @@ public class MainActivity extends AppCompatActivity
 
         leftImageview = (ImageView) findViewById(R.id.leftimageView);
         initTab();
-
-
-
-        //jTDS连接
-        new Thread()
-        {
-            public void run()
-            {
-                try
-                {
-                    jtds.lianjie();
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
     }
 
 

@@ -19,6 +19,12 @@ android {
     }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
@@ -27,4 +33,7 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.7.5'
     compile files('libs/jtds-1.2.7.jar')
     compile files('libs/open_sdk_r5756.jar')
+    compile files('libs/MobTools-2016.0714.1402.jar')
+    compile files('libs/MobCommons-2016.0714.1402.jar')
+    compile(name:'SMSSDK-2.1.1', ext:'aar')
 }

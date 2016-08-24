@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 import bean.myList;
+import zhuaizhuai.icard.Log;
 import zhuaizhuai.icard.MainActivity;
 import zhuaizhuai.icard.R;
 
@@ -130,7 +131,7 @@ public class Fragment2_2 extends android.support.v4.app.Fragment
 
 //                        String sql="select * from jiaoyijilu where io = 1 order by id desc";
                         String sql="select * from jiaoyijilu where io = 1 and time >= '"+datestart.getText().toString()+"' and time <= '"+dateend.getText().toString()+"' order by id desc";
-                        List list = mactivity.jtds.getdata(sql);
+                        List list = Log.logthis.jtds.getdata(sql);
 
                         msg = Message.obtain();
                         msg.what = 0;
@@ -154,7 +155,7 @@ public class Fragment2_2 extends android.support.v4.app.Fragment
 
                 //查询最后一条信息
                 String sql="select * from jiaoyijilu where io = 1 order by id desc";
-                List list = mactivity.jtds.getdata(sql);
+                List list = Log.logthis.jtds.getdata(sql);
 
                 msg = Message.obtain();
                 msg.what = 0;

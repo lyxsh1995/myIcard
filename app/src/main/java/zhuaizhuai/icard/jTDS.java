@@ -58,15 +58,28 @@ public class jTDS
             System.out.println("加载驱动程序出错");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (Exception e)
+        {
         }
     }
 
     //获取交易记录
     public List getdata(String sql)
     {
-        lianjie();
+        if (con != null)
+        {
+            try
+            {
+                if (con.isClosed() == true)
+                {
+                    lianjie();
+                }
+            }
+            catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+        }
         ArrayList<Map>  list = new ArrayList<Map>();
         Map<Object,Object> map;
         try
@@ -115,6 +128,166 @@ public class jTDS
                 Log.w("SQL","数据库连接未正常关闭");
                 return false;
             }
+        }
+        return false;
+    }
+
+    public boolean chongfu(String yonghuming)
+    {
+        if (con != null)
+        {
+            try
+            {
+                if (con.isClosed() == true)
+                {
+                    lianjie();
+                }
+            }
+            catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        String sql="SELECT * FROM yonghuxinxi where yonghuming = '"+yonghuming+"'";
+        Statement stmt = null;
+        try
+        {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next())
+            {
+                rs.close();
+                stmt.close();
+                closecon();
+                return true;
+            }
+            rs.close();
+            stmt.close();
+            closecon();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean executesql(String sql)
+    {
+        if (con != null)
+        {
+            try
+            {
+                if (con.isClosed() == true)
+                {
+                    lianjie();
+                }
+            }
+            catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        Statement stmt = null;
+        try
+        {
+            stmt = con.createStatement();
+            int rs = stmt.executeUpdate(sql);
+            while (rs > 0)
+            {
+                stmt.close();
+                closecon();
+                return true;
+            }
+            stmt.close();
+            closecon();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean yijingzhuce(String openid)
+    {
+        if (con != null)
+    {
+        try
+        {
+            if (con.isClosed() == true)
+            {
+                lianjie();
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+        String sql="SELECT * FROM yonghuxinxi where qqid = '"+openid+"'";
+        Statement stmt = null;
+        try
+        {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next())
+            {
+                rs.close();
+                stmt.close();
+                closecon();
+                return true;
+            }
+            rs.close();
+            stmt.close();
+            closecon();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean denglu(String yonghuming,String mima)
+    {
+        if (con != null)
+        {
+            try
+            {
+                if (con.isClosed() == true)
+                {
+                    lianjie();
+                }
+            }
+            catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        String sql="SELECT mima FROM yonghuxinxi where yonghuming = '"+yonghuming+"'";
+        Statement stmt = null;
+        try
+        {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next())
+            {
+                if (rs.getString("mima").equals(mima))
+                {
+                    rs.close();
+                    stmt.close();
+                    closecon();
+                    return true;
+                }
+            }
+            rs.close();
+            stmt.close();
+            closecon();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
         }
         return false;
     }

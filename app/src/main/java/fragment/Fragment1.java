@@ -110,7 +110,13 @@ public class Fragment1 extends Fragment
         if (parent != null) {
             parent.removeView(view);
         }
+
         textview1 = (TextView) view.findViewById(R.id.textView1);
+        String yonghuming = mactivity.getIntent().getStringExtra("yonghuming");
+        if (yonghuming != null)
+        {
+            textview1.setText(mactivity.getIntent().getStringExtra("yonghuming"));
+        }
         imageview1 = (ImageView) view.findViewById(R.id.imageView1);
 
         mainlist = (ListView) view.findViewById(R.id.mainlist);
@@ -209,12 +215,15 @@ public class Fragment1 extends Fragment
                 }
                 Splash.splashthis.listener.done = false;
                 Bundle bundle = Splash.splashthis.listener.getBundle();
-                msg = Message.obtain();
-                msg.what = 2;
-                msg.setData(bundle);
-                handler.sendMessage(msg);
-                while ((bundle.getString("figureurl_qq_2"))==null){}
-                setIamgeview(bundle.getString("figureurl_qq_2"));
+                if (!(bundle.getString("ret").equals("-1")))
+                {
+                    msg = Message.obtain();
+                    msg.what = 2;
+                    msg.setData(bundle);
+                    handler.sendMessage(msg);
+                    while ((bundle.getString("figureurl_qq_2"))==null){}
+                    setIamgeview(bundle.getString("figureurl_qq_2"));
+                }
             }
         }.start();
 
@@ -225,9 +234,9 @@ public class Fragment1 extends Fragment
 
                 //查询最后一条信息
                 String sql="select top 1 * from jiaoyijilu where io = 0 order by id desc";
-                List list = mactivity.jtds.getdata(sql);
+                List list = Log.logthis.jtds.getdata(sql);
                 sql="select top 1 * from jiaoyijilu where io = 1 order by id desc";
-                List list2 = mactivity.jtds.getdata(sql);
+                List list2 = Log.logthis.jtds.getdata(sql);
                 list.addAll(list2);
 
                 msg = Message.obtain();

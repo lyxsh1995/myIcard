@@ -54,13 +54,12 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:src="@mipmap/icon_position_publisher"
-            android:layout_marginLeft="25dp"
             android:layout_weight="0.15"
             android:scaleType="center"
             android:adjustViewBounds="true"/>
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/xuehao"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.52"
@@ -69,48 +68,6 @@
             android:textColorHint="@color/Q_huise"
             android:maxLength="10"/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.28"></View>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
-        android:orientation="horizontal"
-        android:weightSum="1"
-        android:gravity="center_vertical|center_horizontal"
-        android:layout_marginTop="20dp">
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/icon_phone_pre"
-            android:scaleType="centerInside"
-            android:layout_marginLeft="25dp"
-            android:layout_weight="0.15"/>
-        <EditText
-            android:id="@+id/account"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.52"
-            android:hint="请输入您的手机号"
-            android:textColor="@color/colorBlack"
-            android:textColorHint="@color/Q_huise"
-            android:maxLength="10"/>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="0.28"
-            android:layout_height="30dp"
-            android:text="获取验证码"
-            android:id="@+id/button"
-            android:textSize="15dp"
-            android:background="#606061"
-            android:textColor="#FFFFFF"/>
     </LinearLayout>
 
     <LinearLayout
@@ -125,27 +82,54 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="25dp"
+            android:src="@mipmap/icon_email_nor"
             android:layout_weight="0.15"
             android:scaleType="center"
             android:adjustViewBounds="true"/>
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/yonghuming"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="0.52"
-            android:hint="收到的验证码"
+            android:hint="请输入您的用户名"
             android:textColor="@color/colorBlack"
             android:textColorHint="@color/Q_huise"
             android:maxLength="10"/>
 
-        <View
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.10"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_marginTop="20dp">
+
+        <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.28"></View>
+            android:src="@mipmap/icon_password_nor"
+            android:layout_weight="0.15"
+            android:scaleType="center"
+            android:adjustViewBounds="true"/>
+
+        <EditText
+            android:id="@+id/mima"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.52"
+            android:hint="请输入您的密码"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@color/Q_huise"
+            android:maxLength="10"
+            android:inputType="textPassword"/>
 
     </LinearLayout>
+
+
 
     <View
         android:layout_width="match_parent"
