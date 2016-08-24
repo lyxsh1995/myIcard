@@ -234,9 +234,9 @@ public class Fragment1 extends Fragment
 
                 //查询最后一条信息
                 String sql="select top 1 * from jiaoyijilu where io = 0 order by id desc";
-                List list = Log.logthis.jtds.getdata(sql);
+                List list = Splash.splashthis.jtds.getdata(sql);
                 sql="select top 1 * from jiaoyijilu where io = 1 order by id desc";
-                List list2 = Log.logthis.jtds.getdata(sql);
+                List list2 = Splash.splashthis.jtds.getdata(sql);
                 list.addAll(list2);
 
                 msg = Message.obtain();

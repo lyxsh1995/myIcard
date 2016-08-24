@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tencent.tauth.Tencent;
 import Tencent.BaseUiListener;
@@ -19,9 +21,11 @@ public class Splash extends Activity
     public BaseUiListener listener = new BaseUiListener();
     public Sqlite sqlite;
     public SQLiteDatabase db;
+    public jTDS jtds = new jTDS();
     public Tencent mytencent;
     public static String AppID = "1105607308";
-    private String openid,access_token,expires_in;
+    public String openid,access_token,expires_in;
+    public String yonghuming,mima;
 
     private TextView daojishi_text;
     private int daojishishu;
@@ -53,6 +57,22 @@ public class Splash extends Activity
         setContentView(R.layout.splash);
 
         splashthis = this;
+        //jTDS连接
+        new Thread()
+        {
+            public void run()
+            {
+                try
+                {
+                    jtds.lianjie();
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+
         mytencent = createInstance(AppID,this);
         //创建数据库
         sqlite = new Sqlite(getApplication(),"Icardsqlite",null,1);
@@ -67,14 +87,35 @@ public class Splash extends Activity
             if(cursor.getCount() == 1)
             {
                 cursor.move(1);
-                openid = cursor.getString(1);
-                if ((openid = cursor.getString(1)) != null)
+                yonghuming = cursor.getString(4);
+                mima = cursor.getString(5);
+                if (yonghuming != null && mima != null)
                 {
-                    access_token = cursor.getString(2);
-                    expires_in = cursor.getString(3);
-                    mytencent.setOpenId(openid);
-                    mytencent.setAccessToken(access_token,expires_in);
-                    tiaozhuan = true;
+                    if (!yonghuming.equals("null") && !mima.equals("null"))
+                    {
+                        new AsyncTask<String, Void, Boolean>()
+                        {
+                            @Override
+                            protected Boolean doInBackground(String... params)
+                            {
+                                if(Splash.splashthis.jtds.denglu(params[0],params[1]))
+                                {
+                                    Splash.splashthis.db.execSQL(Splash.splashthis.jtds.getxinxi(params[0]));
+                                    return true;
+                                }
+                                return false;
+                            }
+
+                            @Override
+                            protected void onPostExecute(Boolean aBoolean)
+                            {
+                                if (aBoolean)
+                                {
+                                    tiaozhuan = true;
+                                }
+                            }
+                        }.execute(yonghuming, mima);
+                    }
                 }
             }
         }
@@ -90,6 +131,7 @@ public class Splash extends Activity
                 if (tiaozhuan == true)
                 {
                     intent = new Intent(Splash.this, MainActivity.class);
+                    intent.putExtra("yonghuming",yonghuming);
                 }else
                 {
                     intent = new Intent(Splash.this, Log.class);

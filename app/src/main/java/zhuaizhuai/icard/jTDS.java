@@ -211,8 +211,6 @@ public class jTDS
 
     public boolean yijingzhuce(String openid)
     {
-        if (con != null)
-    {
         try
         {
             if (con.isClosed() == true)
@@ -224,8 +222,7 @@ public class jTDS
         {
             e.printStackTrace();
         }
-    }
-        String sql="SELECT * FROM yonghuxinxi where qqid = '"+openid+"'";
+        String sql = "SELECT * FROM yonghuxinxi where openid = '" + openid + "'";
         Statement stmt = null;
         try
         {
@@ -251,6 +248,9 @@ public class jTDS
 
     public boolean denglu(String yonghuming,String mima)
     {
+        while (con == null)
+        {
+        }
         if (con != null)
         {
             try
@@ -290,6 +290,56 @@ public class jTDS
             e.printStackTrace();
         }
         return false;
+    }
+
+    public String getxinxi(String yonghuming)
+    {
+        if (con != null)
+        {
+            try
+            {
+                if (con.isClosed() == true)
+                {
+                    lianjie();
+                }
+            }
+            catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        String sql = "SELECT * FROM yonghuxinxi where yonghuming = '" + yonghuming + "'";
+        Statement stmt = null;
+        try
+        {
+            String openid, access_token, expires_in;
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next())
+            {
+                openid = rs.getString("openid");
+                access_token = rs.getString("access_token");
+                expires_in = rs.getString("expires_in");
+                if (!openid.equals("null"))
+                {
+                    Splash.splashthis.mytencent.setOpenId(openid);
+                    Splash.splashthis.mytencent.setAccessToken(access_token,expires_in);
+                }else
+                {
+                    Splash.splashthis.mytencent.setOpenId("0");
+                    Splash.splashthis.mytencent.setAccessToken("0","0");
+                }
+                rs.close();
+                stmt.close();
+                closecon();
+                return "update qq set openid = '" + openid + "' , access_token = '" + access_token + "' , expires_in = '" + expires_in + "' where _id = 1;";
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return "";
     }
 //    public void testConnection(Connection con) throws java.sql.SQLException {
 //

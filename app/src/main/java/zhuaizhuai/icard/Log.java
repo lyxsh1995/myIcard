@@ -17,8 +17,8 @@ import org.json.JSONException;
 public class Log extends Activity
 {
     public static Log logthis;
-    public String openid;
-    public jTDS jtds = new jTDS();
+    public String openid,access_token,expires_in;
+
 
     private Button log_qq,log_register,log_log;
     private EditText account,password;
@@ -27,23 +27,8 @@ public class Log extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log);
-
+        
         logthis = this;
-        //jTDS连接
-        new Thread()
-        {
-            public void run()
-            {
-                try
-                {
-                    jtds.lianjie();
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
 
         account = (EditText) findViewById(R.id.account);
         password = (EditText) findViewById(R.id.password);
@@ -53,10 +38,8 @@ public class Log extends Activity
             @Override
             public void onClick(View v)
             {
-                if (!Splash.splashthis.mytencent.isSessionValid())
-                {
-                    Splash.splashthis.mytencent.login(Log.this, "get_user_info,add_topic", Splash.splashthis.listener);
-                }
+//                                if (!Splash.splashthis.mytencent.isSessionValid())  判断是否登录过
+                Splash.splashthis.mytencent.login(Log.this, "get_user_info,add_topic", Splash.splashthis.listener);
             }
         });
 
@@ -80,7 +63,13 @@ public class Log extends Activity
                     @Override
                     protected Boolean doInBackground(String... params)
                     {
-                        return jtds.denglu(params[0],params[1]);
+                        if(Splash.splashthis.jtds.denglu(params[0],params[1]))
+                        {
+                            Splash.splashthis.db.execSQL("update qq set yonghuming = '"+params[0]+"', mima = '"+params[1]+"' where _id =1");
+                            Splash.splashthis.db.execSQL(Splash.splashthis.jtds.getxinxi(params[0]));
+                            return true;
+                        }
+                        return false;
                     }
 
                     @Override
@@ -89,7 +78,7 @@ public class Log extends Activity
                         if (aBoolean)
                         {
                             Intent intent = new Intent(Log.this,MainActivity.class);
-//                            intent.putExtra("yonghuming",account.getText().toString().trim());
+                            intent.putExtra("yonghuming",account.getText().toString().trim());
                             startActivity(intent);
                             finish();
                         }
@@ -111,9 +100,10 @@ public class Log extends Activity
             Splash.splashthis.mytencent.onActivityResultData(requestCode, resultCode, data,Splash.splashthis.listener);
             Splash.splashthis.db.execSQL(Splash.splashthis.listener.getopenid());
             openid = Splash.splashthis.listener.res.getString("openid");
+            access_token = Splash.splashthis.listener.res.getString("access_token");
+            expires_in = Splash.splashthis.listener.res.getString("expires_in");
             Splash.splashthis.mytencent.setOpenId(openid);
-            Splash.splashthis.mytencent.setAccessToken(Splash.splashthis.listener.res.getString("access_token"),
-                                                  Splash.splashthis.listener.res.getString("expires_in"));
+            Splash.splashthis.mytencent.setAccessToken(access_token, expires_in);
             Splash.splashthis.listener.done = false;
         }
         catch (JSONException e)
@@ -125,7 +115,7 @@ public class Log extends Activity
             @Override
             protected Boolean doInBackground(String... params)
             {
-                return jtds.yijingzhuce(params[0]);
+                return Splash.splashthis.jtds.yijingzhuce(params[0]);
             }
 
             @Override
@@ -141,6 +131,9 @@ public class Log extends Activity
                 {
                     //QQ登录未注册过
                     Intent intent = new Intent(Log.this,Register.class);
+                    intent.putExtra("openid",openid);
+                    intent.putExtra("access_token",access_token);
+                    intent.putExtra("expires_in",expires_in);
                     startActivity(intent);
                 }
             }

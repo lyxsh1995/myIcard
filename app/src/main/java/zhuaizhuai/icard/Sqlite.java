@@ -27,7 +27,7 @@ public class Sqlite extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase db)
     {
         String sqlstr;
-        sqlstr = "CREATE TABLE qq (_id INTEGER PRIMARY KEY AUTOINCREMENT, openid TEXT, access_token TEXT, expires_in TEXT);";
+        sqlstr = "CREATE TABLE qq (_id INTEGER PRIMARY KEY AUTOINCREMENT, openid TEXT, access_token TEXT, expires_in TEXT,yonghuming TEXT,mima TEXT);";
         db.execSQL(sqlstr);
         sqlstr ="insert into qq(_id) values('1')";
         db.execSQL(sqlstr);

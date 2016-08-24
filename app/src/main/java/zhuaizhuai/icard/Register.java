@@ -50,7 +50,7 @@ public class Register extends Activity
                         @Override
                         protected Boolean doInBackground(String... params)
                         {
-                            return Log.logthis.jtds.chongfu(params[0]);
+                            return Splash.splashthis.jtds.chongfu(params[0]);
                         }
 
                         @Override
@@ -58,17 +58,22 @@ public class Register extends Activity
                         {
                             if (aBoolean)
                             {
-                                Toast.makeText(Register.this,"用户名重复",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Register.this,"用户名已经被注册过了",Toast.LENGTH_SHORT).show();
                             }
                             else
                             {
-                                String sql = "insert into yonghuxinxi values ('"+yonghuming.getText().toString().trim()+"','"+mima.getText().toString()+"','"+xuehao.getText().toString()+"',NULL,NULL)";
+                                String sql = "insert into yonghuxinxi values ('"+yonghuming.getText().toString().trim()+"','"
+                                                                                +mima.getText().toString()+"','"
+                                                                                +xuehao.getText().toString()+"','"
+                                                                                +getIntent().getStringExtra("openid")+"','"
+                                                                                +getIntent().getStringExtra("access_token")+"','"
+                                                                                +getIntent().getStringExtra("expires_in") +"',NULL)";
                                 new AsyncTask<String, Void, Boolean>()
                                 {
                                     @Override
                                     protected Boolean doInBackground(String... params)
                                     {
-                                        return Log.logthis.jtds.executesql(params[0]);
+                                        return Splash.splashthis.jtds.executesql(params[0]);
                                     }
 
                                     @Override
@@ -91,7 +96,5 @@ public class Register extends Activity
                 }
             }
         });
-
-
     }
 }
