@@ -27,16 +27,8 @@ public class jTDS
         return oldbalance;
     }
 
-    public jTDS()
-    {
-        /**
-         *以下是数据库表索引列
-         */
-        index.put("J_time",2);
-        index.put("J_io",3);
-        index.put("J_detail",4);
-        index.put("J_oldbalance",5);
-    }
+    final int J_time = 2,J_io = 3,J_detail = 4,J_oldbalance = 5;
+    final int D_neixing = 2,D_yonghuming = 3,D_biaoti = 4,D_shijian = 5,D_neirong = 6;
 
     SimpleDateFormat formattime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public void lianjie()
@@ -90,8 +82,8 @@ public class jTDS
             while (rs.next())
             {
                 map = new HashMap<>();
-                map.put("time",formattime.format(rs.getTimestamp(index.get("J_time"))));
-                if (rs.getBoolean(index.get("J_io")))
+                map.put("time",formattime.format(rs.getTimestamp(J_time)));
+                if (rs.getBoolean(J_io))
                 {
                     map.put("io","收入:");
                 }
@@ -99,8 +91,8 @@ public class jTDS
                 {
                     map.put("io","支出:");
                 }
-                map.put("detail",rs.getFloat(index.get("J_detail")));
-                map.put("oldbalance",rs.getFloat(index.get("J_oldbalance")));
+                map.put("detail",rs.getFloat(J_detail));
+                map.put("oldbalance",rs.getFloat(J_oldbalance));
                 list.add(map);
             }
             rs.close();
@@ -344,6 +336,48 @@ public class jTDS
             e.printStackTrace();
         }
         return "";
+    }
+
+    public List getdata2(String sql)
+    {
+        if (con != null)
+        {
+            try
+            {
+                if (con.isClosed() == true)
+                {
+                    lianjie();
+                }
+            }
+            catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        ArrayList<Map>  list = new ArrayList<Map>();
+        Map<Object,Object> map;
+        try
+        {
+//            String sql="SELECT * FROM jiaoyijilu where userID="+userID;
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next())
+            {
+                map = new HashMap<>();
+                map.put("yonghuming",rs.getString(D_yonghuming));
+                map.put("biaoti",rs.getString(D_biaoti));
+
+                list.add(map);
+            }
+            rs.close();
+            stmt.close();
+            closecon();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return list;
     }
 //    public void testConnection(Connection con) throws java.sql.SQLException {
 //

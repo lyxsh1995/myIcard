@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import zhuaizhuai.icard.R;
@@ -16,6 +17,9 @@ import zhuaizhuai.icard.R;
 public class Fragment3_1 extends Fragment
 {
     private View view;
+
+    ListView mainlist3;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         if (view == null)
@@ -28,8 +32,8 @@ public class Fragment3_1 extends Fragment
             parent.removeView(view);
         }
 
-        TextView text = (TextView) view.findViewById(R.id.textView10);
-        text.setText("zhuaizhuai");
+        mainlist3 = (ListView) view.findViewById(R.id.mainlist3);
+
         return view;
     }
 }
