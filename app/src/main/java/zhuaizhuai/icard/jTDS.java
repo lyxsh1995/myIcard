@@ -28,7 +28,8 @@ public class jTDS
     }
 
     final int J_time = 2,J_io = 3,J_detail = 4,J_oldbalance = 5;
-    final int D_neixing = 2,D_yonghuming = 3,D_biaoti = 4,D_shijian = 5,D_neirong = 6;
+    final int D_id = 1,D_neixing = 2,D_yonghuming = 3,D_biaoti = 4,D_shijian = 5,D_neirong = 6;
+    final int H_id = 1,H_zhutiid = 2,H_yonghuming = 3,H_neirong = 4,H_shijian = 5;
 
     SimpleDateFormat formattime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public void lianjie()
@@ -366,7 +367,51 @@ public class jTDS
                 map = new HashMap<>();
                 map.put("yonghuming",rs.getString(D_yonghuming));
                 map.put("biaoti",rs.getString(D_biaoti));
+                map.put("neirong",rs.getString(D_neirong));
+                map.put("shijian",formattime.format(rs.getTimestamp(D_shijian)));
+                map.put("id",rs.getString(D_id));
+                list.add(map);
+            }
+            rs.close();
+            stmt.close();
+            closecon();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
+    public List getdata3(String sql)
+    {
+        if (con != null)
+        {
+            try
+            {
+                if (con.isClosed() == true)
+                {
+                    lianjie();
+                }
+            }
+            catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        ArrayList<Map>  list = new ArrayList<Map>();
+        Map<Object,Object> map;
+        try
+        {
+//            String sql="SELECT * FROM jiaoyijilu where userID="+userID;
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next())
+            {
+                map = new HashMap<>();
+                map.put("yonghuming",rs.getString(H_yonghuming));
+                map.put("neirong",rs.getString(H_neirong));
+                map.put("shijian",formattime.format(rs.getTimestamp(H_shijian)));
                 list.add(map);
             }
             rs.close();

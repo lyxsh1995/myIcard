@@ -42,9 +42,11 @@ public class MainActivity extends AppCompatActivity
     public Tooltitle tooltitle;
     public TextView toolbartitle;
     public ImageButton toolbarright;
+    public ImageButton toolbarback;
     public Fragment1 fragment1;
     public ListView listview;
     public ImageView leftImageview;
+    public String yonghuming;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -56,13 +58,6 @@ public class MainActivity extends AppCompatActivity
         tooltitle = (Tooltitle) findViewById(R.id.toolbar);
         setSupportActionBar(tooltitle);
         toolbartitle = (TextView) findViewById(R.id.tv_nav_title);
-        toolbartitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                toolbartitle.setText("拽拽");
-            }
-        });
         toolbarright = (ImageButton) findViewById(R.id.iv_nav_right);
         toolbarright.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,8 +66,19 @@ public class MainActivity extends AppCompatActivity
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
+        toolbarback = (ImageButton) findViewById(R.id.iv_nav_back);
+        toolbarback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                mTabhost.setCurrentTab(0);
+            }
+        });
 
         listview = (ListView) findViewById(R.id.left_drawer);
+
+        yonghuming = getIntent().getStringExtra("yonghuming");
+
         fragment1 = new Fragment1();
 
         List list = leftlist.getList();

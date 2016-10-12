@@ -41,7 +41,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="可爱的拽拽"
                     android:id="@+id/textView1"
                     android:textColor="#aaFFFFFF"
                     android:textSize="30sp"
@@ -54,7 +53,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="13627448888"
                     android:id="@+id/textView2"
                     android:textColor="#aaFFFFFF"
                     android:textSize="20sp"
@@ -67,7 +65,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2013031000"
+                    android:text="2013031029"
                     android:id="@+id/textView3"
                     android:textColor="#aaFFFFFF"
                     android:textSize="20sp"

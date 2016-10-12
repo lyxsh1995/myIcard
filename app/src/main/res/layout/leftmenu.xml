@@ -59,7 +59,6 @@
                     android:layout_marginTop="5dp"
                     android:autoText="true"
                     android:gravity="left"
-                    android:text="13627448888"
                     android:textColor="#aaffffff"
                     android:textSize="10sp"/>
 
@@ -71,7 +70,7 @@
                     android:layout_marginTop="5dp"
                     android:autoText="true"
                     android:gravity="left"
-                    android:text="2013031000"
+                    android:text="2013031029"
                     android:textColor="#aaffffff"
                     android:textSize="10sp"/>
             </LinearLayout>

@@ -112,7 +112,7 @@ public class Fragment1 extends Fragment
         }
 
         textview1 = (TextView) view.findViewById(R.id.textView1);
-        String yonghuming = mactivity.getIntent().getStringExtra("yonghuming");
+        String yonghuming = mactivity.yonghuming;
         if (yonghuming != null)
         {
             textview1.setText(mactivity.getIntent().getStringExtra("yonghuming"));

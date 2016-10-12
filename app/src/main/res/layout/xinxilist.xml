@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:weightSum="1"
+              android:orientation="vertical">
+
+    <TextView
+        android:layout_width="107dp"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/xinxilist_yonghuming"
+        android:layout_weight="0.08"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/xinxilist_biaoti"
+        android:layout_weight="0.08"
+        android:textSize="15dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/xinxilist_shijian"
+        android:layout_weight="0.08"
+        android:gravity="end"
+        android:textSize="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/xinxilist_neirong"
+        android:layout_weight="0.08"
+        android:visibility="gone"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/xinxilist_zhutiid"
+        android:layout_weight="0.08"
+        android:visibility="gone"/>
+
+</LinearLayout>
