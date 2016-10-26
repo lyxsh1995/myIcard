@@ -68,30 +68,29 @@ public class Fragment1 extends Fragment
                                                               new String[]{"time","io","detail","oldbalance"},
                                                               new int[]{R.id.mainlist_2,R.id.mainlist_3,R.id.mainlist_4,R.id.mainlist_6});
                     mainlist.setAdapter(adapter);
-
+                    msg = Message.obtain();
+                    msg.what = 3;
+                    handler.sendMessage(msg);
                     break;
                 case 1:
                     imageview1.setImageBitmap((Bitmap) msg.obj);
                     mactivity.leftImageview.setImageBitmap((Bitmap) msg.obj);
                     break;
-                case 2:
-                    textview1.setText(msg.getData().getString("nickname"));
-                    break;
                 case 3:
-                    for(int i = 0;i<mainlist.getCount();i++)
+                    try
                     {
-                        View viewlist = mainlist.getChildAt(i);
-                        mainlist_4 = (TextView) viewlist.findViewById(R.id.mainlist_4);
-                        mainlist_3 = (TextView) viewlist.findViewById(R.id.mainlist_3);
-                        if (mainlist_3.getText().equals("收入:"))
+                        for(int i = 0;i<mainlist.getCount();i++)
                         {
-                            mainlist_4.setTextColor(Color.GREEN);
-                            mainlist_4.setText("+ " + mainlist_4.getText().toString());
-                        } else
-                        {
-                            mainlist_4.setText("- " + mainlist_4.getText().toString());
+                            View viewlist = mainlist.getChildAt(i);
+                            mainlist_4 = (TextView) viewlist.findViewById(R.id.mainlist_4);
+                            mainlist_3 = (TextView) viewlist.findViewById(R.id.mainlist_3);
+                            if (mainlist_3.getText().equals("收入:"))
+                            {
+                                mainlist_4.setTextColor(Color.GREEN);
+                            }
                         }
                     }
+                    catch (Exception e) {}
                     break;
             }
         }
@@ -102,6 +101,7 @@ public class Fragment1 extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         mactivity = (MainActivity) getActivity();
+        String yonghuming = mactivity.yonghuming;
 
         if(view == null){
             view=inflater.inflate(R.layout.fragment_1, null);
@@ -112,13 +112,11 @@ public class Fragment1 extends Fragment
         }
 
         textview1 = (TextView) view.findViewById(R.id.textView1);
-        String yonghuming = mactivity.yonghuming;
         if (yonghuming != null)
         {
             textview1.setText(mactivity.getIntent().getStringExtra("yonghuming"));
         }
         imageview1 = (ImageView) view.findViewById(R.id.imageView1);
-
         mainlist = (ListView) view.findViewById(R.id.mainlist);
         setview();
 
@@ -130,6 +128,7 @@ public class Fragment1 extends Fragment
             }
         });
 
+        textview1.setText(yonghuming);
         return view;
     }
 
@@ -208,22 +207,18 @@ public class Fragment1 extends Fragment
             @Override
             public void run()
             {
-                UserInfo userInfo = new UserInfo(getContext(), Splash.splashthis.mytencent.getQQToken());
-                userInfo.getUserInfo(Splash.splashthis.listener);
-                while (!(Splash.splashthis.listener.done))
-                {
-                }
+//                UserInfo userInfo = new UserInfo(getContext(), Splash.splashthis.mytencent.getQQToken());
+//                userInfo.getUserInfo(Splash.splashthis.listener);
+//                while (!(Splash.splashthis.listener.done))
+//                {
+//                }
                 Splash.splashthis.listener.done = false;
-                Bundle bundle = Splash.splashthis.listener.getBundle();
-                if (!(bundle.getString("ret").equals("-1")))
-                {
-                    msg = Message.obtain();
-                    msg.what = 2;
-                    msg.setData(bundle);
-                    handler.sendMessage(msg);
-                    while ((bundle.getString("figureurl_qq_2"))==null){}
-                    setIamgeview(bundle.getString("figureurl_qq_2"));
-                }
+//                Bundle bundle = Splash.splashthis.listener.getBundle();
+//                if (!(bundle.getString("ret").equals("-1")))
+//                {
+//                    while ((bundle.getString("figureurl_qq_2"))==null){}
+//                    setIamgeview(bundle.getString("figureurl_qq_2"));
+//                }
             }
         }.start();
 
@@ -233,9 +228,9 @@ public class Fragment1 extends Fragment
             {
 
                 //查询最后一条信息
-                String sql="select top 1 * from jiaoyijilu where io = 0 order by id desc";
+                String sql="select top 1 * from jiaoyijilu where yonghuming = '"+mactivity.yonghuming+"' and io = 0 order by id desc";
                 List list = Splash.splashthis.jtds.getdata(sql);
-                sql="select top 1 * from jiaoyijilu where io = 1 order by id desc";
+                sql="select top 1 * from jiaoyijilu where yonghuming = '"+mactivity.yonghuming+"' and io = 1 order by id desc";
                 List list2 = Splash.splashthis.jtds.getdata(sql);
                 list.addAll(list2);
 

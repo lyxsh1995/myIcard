@@ -1,45 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
+              android:layout_height="match_parent"
+              android:weightSum="1"
               android:background="@mipmap/beijing"
-              android:orientation="vertical"
-              android:weightSum="1.0">
+              android:gravity="center_vertical"
+              android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.12"
-        android:background="@drawable/layout_border"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="0.07">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="类型"
+            android:id="@+id/textView11"
+            android:textSize="20dp"
+            android:gravity="center"/>
 
         <Spinner
-            android:layout_width="84dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner2"
+            android:spinnerMode="dropdown"
+            android:entries="@array/leixing"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="0.07">
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/spinner"
-            android:entries="@array/spi"
+            android:text="细节"
+            android:id="@+id/textView12"
+            android:textSize="20dp"
+            android:gravity="center"/>
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner3"
             android:spinnerMode="dialog"
-            android:popupBackground="#FFFFFF"
-            android:prompt="@string/spibiaoti"
-            android:gravity="center_vertical|right"
-            android:layout_marginLeft="10dp"/>
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:entries="@array/shouruleixing"
+            android:visibility="gone"/>
+
+        <EditText
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/xijie"
+            android:layout_marginLeft="40dp"
+            android:hint="细节"
+            android:gravity="center_horizontal"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.07"
+        android:weightSum="1"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="金额"
+            android:id="@+id/textView13"
+            android:gravity="center"
+            android:textSize="20dp"/>
+
+        <EditText
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:id="@+id/jinge"
+            android:layout_gravity="center_horizontal"
+            android:inputType="numberSigned"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:layout_marginLeft="40dp"
+            android:hint="0.0"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="213dp"
+        android:layout_weight="0.68"
+        android:weightSum="1"
+        android:gravity="center_horizontal">
+
+        <DatePicker
+            android:layout_width="match_parent"
+            android:layout_height="102dp"
+            android:id="@+id/datePicker2"/>
+
+        <TimePicker
+            android:layout_width="match_parent"
+            android:layout_height="106dp"
+            android:id="@+id/timePicker"
+            android:layoutMode="opticalBounds"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/textView8"
-            android:gravity="center_vertical"
-            android:hint="请填写标题"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="20dp"/>
+            android:id="@+id/beizhu"
+            android:hint="可以选择填写备注"/>
+
     </LinearLayout>
 
-    <EditText
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:id="@+id/editText"
-        android:layout_weight="0.58"/>
+        android:layout_height="60dp"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加"
+            android:id="@+id/tianjia"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消"
+            android:id="@+id/quxiao"/>
+    </LinearLayout>
+
 </LinearLayout>

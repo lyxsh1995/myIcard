@@ -57,8 +57,10 @@ public class Fragment2 extends Fragment
         tabStrip.setTabIndicatorColor(255255255);
         tabStrip.setTextSpacing(200);
 
+        mFragments.add(new Fragment2_3());
         mFragments.add(new Fragment2_1());
         mFragments.add(new Fragment2_2());
+        titleContainer.add("综合信息");
         titleContainer.add("支出信息");
         titleContainer.add("收入信息");
 

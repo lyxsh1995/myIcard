@@ -124,6 +124,7 @@ public class Log extends Activity
                 if (aBoolean)
                 {
                     Intent intent = new Intent(Log.this,MainActivity.class);
+                    intent.putExtra("yonghuming",account.getText().toString().trim());
                     startActivity(intent);
                     finish();
                 }
@@ -134,6 +135,7 @@ public class Log extends Activity
                     intent.putExtra("openid",openid);
                     intent.putExtra("access_token",access_token);
                     intent.putExtra("expires_in",expires_in);
+                    intent.putExtra("yonghuming",account.getText().toString().trim());
                     startActivity(intent);
                 }
             }

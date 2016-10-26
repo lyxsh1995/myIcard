@@ -1,5 +1,9 @@
 package fragment;
 
+/**
+ * Created by lyxsh on 2016/10/24.
+ */
+
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -29,7 +33,7 @@ import zhuaizhuai.icard.Splash;
  * Created by lyxsh on 2016/9/6.
  */
 
-public class Fragment3_1 extends Fragment
+public class Fragment3_2 extends Fragment
 {
     MainActivity mactivity;
     private View view;
@@ -64,7 +68,7 @@ public class Fragment3_1 extends Fragment
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                Intent intent = new Intent(getContext(),Bbs.class);
+                Intent intent = new Intent(getContext(), Bbs.class);
 
                 TextView yonghuming = (TextView) view.findViewById(R.id.xinxilist_yonghuming);
                 TextView shijian = (TextView) view.findViewById(R.id.xinxilist_shijian);
@@ -150,6 +154,6 @@ public class Fragment3_1 extends Fragment
                                             new int[]{R.id.xinxilist_yonghuming,R.id.xinxilist_shijian,R.id.xinxilist_biaoti,R.id.xinxilist_neirong,R.id.xinxilist_zhutiid});
                 mainlist3.setAdapter(adapter);
             }
-        }.execute("select * from shiqudiushi where neixing = 1 order by shijian desc");
+        }.execute("select * from shiqudiushi where neixing = 0 order by shijian desc");
     }
 }

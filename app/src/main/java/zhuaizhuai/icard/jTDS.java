@@ -27,7 +27,7 @@ public class jTDS
         return oldbalance;
     }
 
-    final int J_time = 2,J_io = 3,J_detail = 4,J_oldbalance = 5;
+    final int J_id = 1,J_time = 2,J_io = 3,J_detail = 4,J_oldbalance = 5,J_yonghuming = 6,J_leixing = 7,J_beizhu = 8;
     final int D_id = 1,D_neixing = 2,D_yonghuming = 3,D_biaoti = 4,D_shijian = 5,D_neirong = 6;
     final int H_id = 1,H_zhutiid = 2,H_yonghuming = 3,H_neirong = 4,H_shijian = 5;
 
@@ -53,6 +53,7 @@ public class jTDS
             System.out.println(e.getMessage());
         } catch (Exception e)
         {
+            e.printStackTrace();
         }
     }
 
@@ -87,13 +88,19 @@ public class jTDS
                 if (rs.getBoolean(J_io))
                 {
                     map.put("io","收入:");
+                    map.put("detail","+ " + rs.getString(J_detail));
+
                 }
                 else
                 {
                     map.put("io","支出:");
+                    map.put("detail","- " + rs.getString(J_detail));
+
                 }
-                map.put("detail",rs.getFloat(J_detail));
                 map.put("oldbalance",rs.getFloat(J_oldbalance));
+                map.put("id",rs.getInt(J_id));
+                map.put("leixing",rs.getString(J_leixing));
+                map.put("beizhu",rs.getString(J_beizhu));
                 list.add(map);
             }
             rs.close();
@@ -423,6 +430,43 @@ public class jTDS
             e.printStackTrace();
         }
         return list;
+    }
+
+    public float getoldbalance(String sql)
+    {
+        float oldbalance = 0;
+        if (con != null)
+        {
+            try
+            {
+                if (con.isClosed() == true)
+                {
+                    lianjie();
+                }
+            }
+            catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        try
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next())
+            {
+                oldbalance = rs.getFloat("oldbalance");
+            }
+            rs.close();
+            stmt.close();
+            closecon();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+
+        }
+        return oldbalance;
     }
 //    public void testConnection(Connection con) throws java.sql.SQLException {
 //

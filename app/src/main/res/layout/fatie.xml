@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@mipmap/beijing"
+              android:orientation="vertical"
+              android:weightSum="1.0">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.12"
+        android:background="@drawable/layout_border"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+
+        <Spinner
+            android:layout_width="84dp"
+            android:layout_height="match_parent"
+            android:id="@+id/spinner"
+            android:entries="@array/spi"
+            android:spinnerMode="dialog"
+            android:popupBackground="#FFFFFF"
+            android:prompt="@string/spibiaoti"
+            android:gravity="center_vertical|right"
+            android:layout_marginLeft="10dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textView8"
+            android:gravity="center_vertical"
+            android:hint="请填写标题"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="20dp"/>
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/editText"
+        android:layout_weight="0.58"/>
+</LinearLayout>

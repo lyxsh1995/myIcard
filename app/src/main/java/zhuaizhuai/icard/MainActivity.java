@@ -1,5 +1,6 @@
 package zhuaizhuai.icard;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.view.GravityCompat;
@@ -27,6 +28,7 @@ import fragment.Fragment1;
 import fragment.Fragment2;
 import fragment.Fragment3;
 import fragment.Fragment4;
+import fragment.Fragment5;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -75,16 +77,33 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        listview = (ListView) findViewById(R.id.left_drawer);
-
         yonghuming = getIntent().getStringExtra("yonghuming");
+        if (yonghuming.equals(""))
+        {
+            try
+            {
+                String sqlstr = "select yonghuming from qq";
+                Cursor cursor = Splash.splashthis.db.rawQuery(sqlstr, null);
+                cursor.move(1);
+                yonghuming = cursor.getString(0);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        TextView tuichu = (TextView) findViewById(R.id.tuichu);
+        tuichu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                getApplication().deleteDatabase("Icardsqlite");
+                finish();
+            }
+        });
 
         fragment1 = new Fragment1();
-
-        List list = leftlist.getList();
-
-        SimpleAdapter adapter = new SimpleAdapter(this,list,R.layout.leftlist,new String[]{"shezhiming","shezhiming2"},new int[]{R.id.leftlist_imageview,R.id.leftlist_textview});
-        listview.setAdapter(adapter);
 
         //Tabhost
         layoutInflater = LayoutInflater.from(this);
@@ -100,14 +119,16 @@ public class MainActivity extends AppCompatActivity
     private void initTab()
     {
         Tab tab_home = new Tab("首页", R.drawable.tab_home_btn, Fragment1.class);
+        Tab tab_tianjia = new Tab("添加", R.drawable.tab_tianjia_btn, Fragment5.class);
         Tab tab_message = new Tab("记录", R.drawable.tab_message_btn, Fragment2.class);
         Tab tab_yipai = new Tab("消息", R.drawable.tab_yipai_btn, Fragment3.class);
-        Tab tab_user = new Tab("设置", R.drawable.tab_user_btn, Fragment4.class);
+//        Tab tab_user = new Tab("设置", R.drawable.tab_user_btn, Fragment4.class);
 
         mTabs.add(tab_home);
+        mTabs.add(tab_tianjia);
         mTabs.add(tab_message);
         mTabs.add(tab_yipai);
-        mTabs.add(tab_user);
+//        mTabs.add(tab_user);
 
         for (Tab tab : mTabs)
         {

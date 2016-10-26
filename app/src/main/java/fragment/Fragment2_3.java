@@ -34,11 +34,11 @@ import zhuaizhuai.icard.Splash;
 /**
  * Created by lyxsh on 2016/8/18.
  */
-public class Fragment2_2 extends android.support.v4.app.Fragment
+public class Fragment2_3 extends android.support.v4.app.Fragment
 {
     MainActivity mactivity;
 
-    public static Fragment2_2 fragment2_2this;
+    public static Fragment2_3 fragment2_3this;
     public View view;
     ListView mainlist2;
     TextView datestart,dateend;
@@ -70,7 +70,7 @@ public class Fragment2_2 extends android.support.v4.app.Fragment
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState)
     {
-        fragment2_2this = this;
+        fragment2_3this = this;
         mactivity = (MainActivity) getActivity();
 
         if(view == null){

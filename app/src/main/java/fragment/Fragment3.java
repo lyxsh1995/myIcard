@@ -58,7 +58,7 @@ public class Fragment3 extends Fragment
         tabStrip.setTextSpacing(200);
 
         mFragments.add(new Fragment3_1());
-        mFragments.add(new Fragment3_1());
+        mFragments.add(new Fragment3_2());
         titleContainer.add("拾取信息");
         titleContainer.add("丢失信息");
 

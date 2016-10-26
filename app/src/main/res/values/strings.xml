@@ -4,8 +4,26 @@
     <string-array name="spi">
         <item>丢失</item>
         <item>拾取</item>
-        <item>其他</item>
     </string-array>
 
     <string name="spibiaoti">信息发布</string>
+
+    <string-array name="leixing">
+        <item>支出</item>
+        <item>收入</item>
+    </string-array>
+
+    <string-array name="zhichuleixing">
+        <item>餐饮</item>
+        <item>购物</item>
+        <item>交通</item>
+        <item>娱乐</item>
+        <item>学杂费</item>
+    </string-array>
+
+    <string-array name="shouruleixing">
+        <item>生活费</item>
+        <item>红包</item>
+        <item>工资</item>
+    </string-array>
 </resources>
