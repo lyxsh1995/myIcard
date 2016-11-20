@@ -115,6 +115,7 @@
     <orderEntry type="library" exported="" name="okhttp-2.7.5" level="project" />
     <orderEntry type="library" exported="" name="okio-1.6.0" level="project" />
     <orderEntry type="library" exported="" name="achartengine-1.2.0" level="project" />
+    <orderEntry type="library" exported="" name="zxing" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-24.0.0" level="project" />
     <orderEntry type="library" exported="" name="mta-sdk-1.6.2" level="project" />
     <orderEntry type="library" exported="" name="SMSSDK-2.1.1-" level="project" />

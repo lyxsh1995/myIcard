@@ -62,13 +62,61 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:id="@+id/imageView9"
+                android:src="@mipmap/xuanfuchuang"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:text="悬浮窗"
+                android:id="@+id/xuanfuchuang"
+                android:layout_weight="0.26"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/imageView8"
+                android:src="@mipmap/erweima"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:text="二维码"
+                android:id="@+id/erweima"
+                android:layout_weight="0.26"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:id="@+id/imageView3"
                 android:src="@mipmap/icon_search_noresult"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
-                android:text="关于"
+                android:text="关    于"
                 android:id="@+id/guanyu"
                 android:layout_weight="0.26"
                 android:textColor="#000000"
@@ -93,7 +141,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
-                android:text="退出"
+                android:text="退    出"
                 android:id="@+id/tuichu"
                 android:layout_weight="0.26"
                 android:textColor="#000000"

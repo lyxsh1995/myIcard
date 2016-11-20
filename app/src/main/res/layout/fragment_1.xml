@@ -84,27 +84,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.20"
+        android:layout_weight="0.15"
         android:weightSum="1"
-        android:gravity="center_horizontal"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
         android:background="#22ffffff"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:text="余额100.23元"
-            android:id="@+id/textView4"
-            android:layout_weight="0.35"
-            android:gravity="center"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:textColor="#dd3ee0de"
-            android:textSize="20dp"
-            android:layout_gravity="center"/>
+        android:orientation="vertical"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
@@ -123,7 +110,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.55"
+        android:layout_weight="0.60"
         android:id="@+id/mainlist"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"

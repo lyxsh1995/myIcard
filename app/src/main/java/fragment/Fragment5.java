@@ -116,8 +116,6 @@ public class Fragment5 extends Fragment
             @Override
             public void onClick(View v)
             {
-                Toast.makeText(getContext(),"xijie",Toast.LENGTH_SHORT).show();
-
                 new AlertDialog.Builder(getContext()).setTitle("单选框").setIcon(
                         android.R.drawable.ic_dialog_info).setSingleChoiceItems(
                         mItems, 0,
@@ -183,7 +181,7 @@ public class Fragment5 extends Fragment
                     {
                         if (aBoolean)
                         {
-                            Toast.makeText(getContext(),"修改成功",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),"添加成功",Toast.LENGTH_SHORT).show();
                         }
                     }
                 }.execute(sql);

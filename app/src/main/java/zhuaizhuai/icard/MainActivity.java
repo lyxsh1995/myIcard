@@ -1,8 +1,11 @@
 package zhuaizhuai.icard;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
+import android.provider.Settings;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +32,7 @@ import fragment.Fragment2;
 import fragment.Fragment3;
 import fragment.Fragment4;
 import fragment.Fragment5;
+import fragment.aboutFragment;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -93,6 +97,16 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
+        TextView guanyu = (TextView) findViewById(R.id.guanyu);
+        guanyu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                aboutFragment aboutFragment = new aboutFragment();
+                aboutFragment.show(getFragmentManager(),"aboutfragment");
+            }
+        });
+
         TextView tuichu = (TextView) findViewById(R.id.tuichu);
         tuichu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +114,38 @@ public class MainActivity extends AppCompatActivity
             {
                 getApplication().deleteDatabase("Icardsqlite");
                 finish();
+                System.exit(0);
+
+            }
+        });
+
+        TextView erweima = (TextView) findViewById(R.id.erweima);
+        erweima.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(MainActivity.this,com.dtr.zxing.activity.CaptureActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView xuanfuchuang = (TextView)findViewById(R.id.xuanfuchuang);
+        xuanfuchuang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if (Build.VERSION.SDK_INT >= 23) {
+                    if (Settings.canDrawOverlays(MainActivity.this)) {
+                        Intent intent = new Intent(getApplicationContext(),FloatWindowService.class);
+                        startService(intent);
+                    } else {
+                        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+                        startActivity(intent);
+                    }
+                } else {
+                    Intent intent = new Intent(getApplicationContext(),FloatWindowService.class);
+                    startService(intent);
+                }
             }
         });
 

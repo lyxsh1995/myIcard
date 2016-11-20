@@ -114,7 +114,6 @@ public class Fragment2_3 extends android.support.v4.app.Fragment
 
         mainlist2.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView<?> arg0, View view,final int location, long arg3) {
-                Toast.makeText(getContext(),"changan",Toast.LENGTH_SHORT).show();
                 viewholder = (MyAdapter.ViewHolder) view.getTag();
                 if (viewholder.cb.getVisibility() == View.GONE)
                 {
@@ -198,9 +197,7 @@ public class Fragment2_3 extends android.support.v4.app.Fragment
                     public void run()
                     {
 
-                        //查询最后一条信息
-//                        String sql="select * from jiaoyijilu where io = 0 order by id desc";
-                        String sql="select * from jiaoyijilu where yonghuming = '"+mactivity.yonghuming+"' and time >= '"+datestart.getText().toString()+"' and time <= '"+dateend.getText().toString()+"' order by id desc";
+                        String sql="select * from jiaoyijilu where yonghuming = '"+mactivity.yonghuming+"' and time >= '"+datestart.getText().toString()+"' and time <= '"+dateend.getText().toString()+"' order by time desc";
                         List list = Splash.splashthis.jtds.getdata(sql);
 
                         msg = Message.obtain();
@@ -341,7 +338,7 @@ public class Fragment2_3 extends android.support.v4.app.Fragment
             {
 
                 //查询最后一条信息
-                String sql="select * from jiaoyijilu where yonghuming = '"+mactivity.yonghuming+"' order by id desc";
+                String sql="select * from jiaoyijilu where yonghuming = '"+mactivity.yonghuming+"' order by time desc";
                 List list = Splash.splashthis.jtds.getdata(sql);
 
                 msg = Message.obtain();
